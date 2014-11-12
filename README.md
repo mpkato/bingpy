@@ -6,8 +6,15 @@ Python Bing Search API (2014)
 Install
 ------
 ```bash
+pip install bingpy
+```
+
+OR
+
+```bash
 pip install git+https://github.com/mpkato/bingpy.git
 ```
+
 
 Usage
 ------
