@@ -2,7 +2,7 @@
 import urllib2
 from lxml import etree
 
-from .web_search_element import WebSearchElement
+from web_search_element import WebSearchElement
 
 class WebSearch:
     APIURL = "https://api.datamarket.azure.com/Bing/Search/v1/Web"
@@ -27,8 +27,14 @@ class WebSearch:
     def _search_original(self, query, skip, market):
         url = self._make_url(query, skip, market)
         self._basic_auth()
-        with urllib2.urlopen(url) as f:
-            yield self._parse_response(f)
+        f = urllib2.urlopen(url)
+        try:
+            result = self._parse_response(f)
+        except Exception, e:
+            raise e
+        finally:
+            f.close()
+        return result
 
     def _make_url(self, query, skip, market):
         return self.APIURL + "?Query='%s'&Market='%s'&$skip=%s" % (urllib2.quote(query), market, skip)
@@ -41,10 +47,12 @@ class WebSearch:
         urllib2.install_opener(opener)
 
     def _parse_response(self, f):
+        result = []
         context = etree.iterparse(f, events=('end',))
         for event, elem in context:
             if elem.tag == '%sentry' % self.XMLNS:
                 for c in elem:
                     if c.tag == '%scontent' % self.XMLNS:
                         elem = WebSearchElement.parse(c[0])
-                        yield elem
+                        result.append(elem)
+        return result
