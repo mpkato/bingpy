@@ -1,9 +1,8 @@
-# -*- coding:utf-8 -*-
 import unittest
 import nose
 import os
 import sys
-sys.path.append(os.path.dirname(__file__) + '/../lib/bingpy/bingpy/')
+sys.path.append(os.path.dirname(__file__) + '/../lib/bingpy3/bingpy3/')
 from web_search import WebSearch
 
 class WebSearchTestCase(unittest.TestCase):

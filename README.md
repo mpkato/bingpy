@@ -1,18 +1,15 @@
-bingpy
+bingpy3
 ======
 
-Python Bing Search API (2014)
+## Python 3 version of [mpkato's bingpy](https://github.com/mpkato/bingpy).
+
 
 Install
 ------
-```bash
-pip install bingpy
-```
 
-OR
 
 ```bash
-pip install git+https://github.com/mpkato/bingpy.git
+pip install git+https://github.com/tomtomgo/bingpy3.git
 ```
 
 

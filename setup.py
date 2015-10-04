@@ -1,17 +1,14 @@
-# -*- coding:utf-8 -*-
 from setuptools import setup, find_packages
 import os
 import sys
 
 def find_scripts(scripts_path):
   base_path = os.path.abspath(scripts_path)
-  return list(map(lambda path: os.path.join(scripts_path, path), 
-           filter(lambda file_name: os.path.isfile(
-             os.path.join(base_path, file_name)), os.listdir(base_path)
-         )))
+  return list([os.path.join(scripts_path, path) for path in [file_name for file_name in os.listdir(base_path) if os.path.isfile(
+             os.path.join(base_path, file_name))]])
 
 
-libdir = "lib/bingpy"
+libdir = "lib/bingpy3"
 sys.path.insert(0, libdir)
 
 import info

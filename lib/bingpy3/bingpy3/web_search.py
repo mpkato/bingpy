@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 from lxml import etree
 
-from web_search_element import WebSearchElement
+from .web_search_element import WebSearchElement
 
 class WebSearch:
     APIURL = "https://api.datamarket.azure.com/Bing/Search/v1/Web"
@@ -17,7 +16,7 @@ class WebSearch:
         # compute the number of Web accesses
         access_num = (num - 1) / self.RESULT_MAX + 1
         result = []
-        for i in range(access_num):
+        for i in range(int(access_num)):
             # get RESULT_MAX search results
             result += self._search_original(query, i * self.RESULT_MAX, market)
         # truncate (redundant...)
@@ -27,24 +26,24 @@ class WebSearch:
     def _search_original(self, query, skip, market):
         url = self._make_url(query, skip, market)
         self._basic_auth()
-        f = urllib2.urlopen(url)
+        f = urllib.request.urlopen(url)
         try:
             result = self._parse_response(f)
-        except Exception, e:
+        except Exception as e:
             raise e
         finally:
             f.close()
         return result
 
     def _make_url(self, query, skip, market):
-        return self.APIURL + "?Query='%s'&Market='%s'&$skip=%s" % (urllib2.quote(query), market, skip)
+        return self.APIURL + "?Query='%s'&Market='%s'&$skip=%s" % (urllib.parse.quote(query), market, skip)
 
     def _basic_auth(self):
-        password_mgr = urllib2.HTTPPasswordMgrWithDefaultRealm()
+        password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
         password_mgr.add_password(None, self.APIURL, self.apikey, self.apikey)
-        handler = urllib2.HTTPBasicAuthHandler(password_mgr)
-        opener = urllib2.build_opener(handler)
-        urllib2.install_opener(opener)
+        handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
+        opener = urllib.request.build_opener(handler)
+        urllib.request.install_opener(opener)
 
     def _parse_response(self, f):
         result = []

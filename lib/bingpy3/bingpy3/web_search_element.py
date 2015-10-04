@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 class WebSearchElement:
     XMLNS_D = "{http://schemas.microsoft.com/ado/2007/08/dataservices}"
     def __init__(self, id = None, title = None, summary = None, url = None, displayurl = None):
