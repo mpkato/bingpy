@@ -3,6 +3,8 @@ bingpy
 
 Python Bing Search API (2014)
 
+[python3 branch](https://github.com/mpkato/bingpy/tree/python3) includes bingpy for python3 thanks to [Tomtomgo](https://github.com/Tomtomgo)
+
 Install
 ------
 ```bash
