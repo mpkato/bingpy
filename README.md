@@ -17,6 +17,10 @@ OR
 pip install git+https://github.com/mpkato/bingpy.git
 ```
 
+### For python3
+```bash
+pip install git+https://github.com/mpkato/bingpy@python3
+```
 
 Usage
 ------
