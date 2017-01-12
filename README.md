@@ -1,34 +1,25 @@
 bingpy
 ======
 
-Python Bing Search API (2014)
+Python Bing Search API (2017)
 
-[python3 branch](https://github.com/mpkato/bingpy/tree/python3) includes bingpy for python3 thanks to [Tomtomgo](https://github.com/Tomtomgo)
+Designed for Python 3
+and Bing Web Search API in Cognitive Services (version 5).
 
 Install
 ------
 ```bash
-pip install bingpy
-```
-
-OR
-
-```bash
-pip install git+https://github.com/mpkato/bingpy.git
-```
-
-### For python3
-```bash
-pip install git+https://github.com/mpkato/bingpy@python3
+pip install git+https://github.com/mpkato/bingpy@v5
 ```
 
 Usage
 ------
-Get your API Key at https://datamarket.azure.com/dataset/bing/search
+Get your API Key at
+https://www.microsoft.com/cognitive-services/en-us/bing-web-search-api
 
 ```python
-from bingpy import WebSearch
-web = WebSearch("YOUR_API_KEY")
+import bingpy
+web = bingpy.WebSearch("YOUR_API_KEY")
 pages = web.search("kyoto", 20)
 for page in pages:
     print page.title
