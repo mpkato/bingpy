@@ -16,7 +16,7 @@ class WebSearch:
         for i in range(access_num):
             # get RESULT_MAX search results
             result += self._search_original(query, self.RESULT_MAX,
-                i, market, safesearch)
+                i*self.RESULT_MAX, market, safesearch)
         # truncate (redundant...)
         result = result[:min(len(result), num)]
         return result
